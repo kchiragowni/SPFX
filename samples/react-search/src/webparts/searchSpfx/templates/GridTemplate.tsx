@@ -50,8 +50,7 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 	}
 	
 	private getIcoSrc(path, icon): string {
-		let icoSrc;
-		icoSrc = `${path}${icon !== null && this.unknown.indexOf(icon) === -1 ? icon : 'code'}.png`;
+		let icoSrc = `${path}${icon !== null && this.unknown.indexOf(icon) === -1 ? icon : 'code'}.png`;
 		return icoSrc;
 	}
 
@@ -148,5 +147,5 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 }
 
 const rowDiv = ({index}) => {
-	
+
 }
