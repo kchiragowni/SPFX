@@ -2,7 +2,11 @@ import { ITemplates } from '../utils/ITemplates';
 
 export const allTemplates: ITemplates[] = [
     { key: 'DefaultTemplate', text: 'Default template', mappings: 'Path,Title' },
-    { key: 'TableTemplate', text: 'Table template', mappings: 'Path,Title,Filename,Fileextension,ModifiedOWSDATE,EditorOWSUSER' }
+    { key: 'TableTemplate', text: 'Table template', mappings: 'Path,Title,Filename,Fileextension,ModifiedOWSDATE,EditorOWSUSER' },
+    { key: 'GridTemplate', 
+        text: 'Grid template', 
+        mappings: 'Path,Title,Filename,Fileextension,ModifiedOWSDATE,EditorOWSUSER,ServerRedirectedEmbedURL,' + 
+                    'ServerRedirectedPreviewURL,ServerRedirectedURL' }
 ];
 
 export default class TemplateLoader {
