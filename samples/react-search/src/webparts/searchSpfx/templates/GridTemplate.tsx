@@ -70,15 +70,23 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 
 		return previewProps;
 	}
-	
+
 	public render(): JSX.Element {
 		// Load the Office UI Fabrics components css file via the module loader
     	ModuleLoader.loadCss('https://appsforoffice.microsoft.com/fabric/2.6.1/fabric.components.min.css');
 
-		return (
+		let inlineStyles = {
+			docCard: {
+				marginBottom: '14px'
+			},
+			docMeta : {
+				background: '#f3f3f3'
+			}
+		};
+
+		return (			
 			<div className={styles.searchSpfx}>
 				<div className="ms-Grid"> 
-  					<div className="ms-Grid-row">
 
 							{
 								(() => {
@@ -91,13 +99,14 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 							
 							{
 								this.props.results.map((result, index) => {
-									return (
-										<div key={index} className={(index == 0 ||index % 3 == 0) ? 'row' : '' }>
-											<div className="ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6">
-												<DocumentCard onClickHref={result.Path}>
+									return (									
+										<div key={index}>
+											<div className="ms-Grid-col ms-u-sm6 ms-u-md4 ms-u-lg4" style={inlineStyles.docCard}>
+												<DocumentCard>
 													<DocumentCardPreview { ...this.documentPreviewProps(result.ServerRedirectedPreviewURL, this.iconUrl, result.Fileextension)} />
+													<div style={inlineStyles.docMeta}>
 													<DocumentCardTitle
-														title={result.Filename !== null ? result.Filename.substring(0, result.Filename.lastIndexOf('.')) : ""}
+														title={result.Title !== null ? result.Title : ""}
 														shouldTruncate={ true }/>
 													<DocumentCardActivity
 														activity={this.getDateFromString(result.ModifiedOWSDATE)}
@@ -105,7 +114,7 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 														[
 															{ 
 																name: this.getAuthorDisplayName(result.EditorOWSUSER), 
-																profileImageSrc: result.ServerRedirectedEmbedURL,
+																profileImageSrc: result.ows_PictureURL,
 																initials: this.getInitials(this.getAuthorDisplayName(result.EditorOWSUSER))
 															}
 														]
@@ -122,30 +131,34 @@ export default class GridTemplate extends React.Component<IGridTemplate, {}> {
 																	ev.stopPropagation();
 																	}
 																},
-																{
+															/*	{
 																	icon: 'Share',
 																	onClick: (ev: any) => {
 																	console.log('You clicked the pin action.');
 																	ev.preventDefault();
 																	ev.stopPropagation();
 																	}
+																},*/
+																{
+																	icon: 'Edit',
+																	onClick: (ev: any) => {
+																		location.href = (result.ServerRedirectedURL) ? result.ServerRedirectedURL : result.ServerRedirectedEmbedURL;
+																	}
 																}
 															]
 														}
-														views={ 432 }
+														views={ result.ViewsRecent }
 														/>
+													</div>
 												</DocumentCard>
-											</div>
+											</div>											
 										</div>);
+									
 									})
 							}
-						</div>
+						
 					</div>	
 			</div>
 		);
 	}
-}
-
-const rowDiv = ({index}) => {
-
 }

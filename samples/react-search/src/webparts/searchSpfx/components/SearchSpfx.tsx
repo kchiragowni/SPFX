@@ -65,9 +65,11 @@ export default class SearchSpfx extends React.Component<ISearchSpfxProps, ISearc
 
 	private _getResults(crntProps: ISearchSpfxProps): void {
 		if (typeof crntProps.externalTemplate !== 'undefined') {
-			searchActions.get(crntProps.context, crntProps.query, crntProps.maxResults, crntProps.sorting, crntProps.externalTemplate.properties.mappings);
+			searchActions.get(crntProps.context, crntProps.query, crntProps.maxResults, 
+					crntProps.sorting, crntProps.externalTemplate.properties.mappings, crntProps.filtering);
 		} else {
-			searchActions.get(crntProps.context, crntProps.query, crntProps.maxResults, crntProps.sorting, this.loader.getTemplateMappings(crntProps.template));
+			searchActions.get(crntProps.context, crntProps.query, crntProps.maxResults, 
+					crntProps.sorting, this.loader.getTemplateMappings(crntProps.template), crntProps.filtering);
 		}
 	}
 

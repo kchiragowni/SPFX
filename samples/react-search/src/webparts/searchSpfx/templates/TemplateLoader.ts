@@ -6,7 +6,7 @@ export const allTemplates: ITemplates[] = [
     { key: 'GridTemplate', 
         text: 'Grid template', 
         mappings: 'Path,Title,Filename,Fileextension,ModifiedOWSDATE,EditorOWSUSER,ServerRedirectedEmbedURL,' + 
-                    'ServerRedirectedPreviewURL,ServerRedirectedURL' }
+                    'ServerRedirectedPreviewURL,ServerRedirectedURL,ViewsRecent, ows_PictureURL' }
 ];
 
 export default class TemplateLoader {

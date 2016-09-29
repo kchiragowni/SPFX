@@ -112,6 +112,8 @@ appDispatcher.register((action) => {
 			// Check if there are fields provided
 			url += '&selectproperties=';
 			url += !searchStore.isEmptyString(action.fields) ? `'${action.fields}'` : "'path,title'";
+			// Add filtering
+			url += !searchStore.isEmptyString(action.filtering) ? `&refinementfilters='${action.filtering}'` : "";
 			// Add the rowlimit
 			url += "&rowlimit=";
 			url += !searchStore.isNull(action.maxResults) ? action.maxResults : 10;

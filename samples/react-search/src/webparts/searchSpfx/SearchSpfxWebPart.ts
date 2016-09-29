@@ -39,6 +39,7 @@ export default class SearchSpfxWebPart extends BaseClientSideWebPart<ISearchSpfx
 			query: this.properties.query,
 			maxResults: this.properties.maxResults,
 			sorting: this.properties.sorting,
+			filtering: this.properties.filtering,
 			context: this.context,
 			firstRender: this.renderedOnce,
 			template: this.properties.template,
@@ -200,6 +201,19 @@ export default class SearchSpfxWebPart extends BaseClientSideWebPart<ISearchSpfx
 						}),
 						PropertyPaneTextField('sorting', {
 							label: strings.FieldsSorting
+						})
+					]
+				}]
+			},
+			{
+				header: {
+					description: strings.PropertyPaneAdvancedDescription
+				},
+				groups: [{
+					groupName: strings.AdvancedGroupName,
+					groupFields: [
+						PropertyPaneTextField('filtering', {
+							label: strings.Fieldsfiltering
 						}),
 						PropertyPaneToggle('external', {
 							label: strings.FieldsExternalLabel

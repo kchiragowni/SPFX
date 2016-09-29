@@ -6,4 +6,5 @@ export interface ISearchAction {
     maxResults?: number;
     sorting?: string;
     fields?: string;
+    filtering?: string;
 }
